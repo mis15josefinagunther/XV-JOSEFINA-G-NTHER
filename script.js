@@ -18,7 +18,7 @@ const CONFIG = {
    * con Formspree u otro servicio. Si queda vacío, el formulario NO envía ni
    * almacena datos: solo muestra un aviso de demostración.
    */
-  formEndpoint: "https://docs.google.com/forms/d/e/1FAIpQLSdPf9PO1Fte-z6XDRx_6V9qB26u2QqQR3O8o4cvVb-mcX_kpg/viewform"
+  formEndpoint: "https://script.google.com/macros/s/AKfycbx8T3DC6Q-IiDFXFVSqQ6Uck_KdOFyP4PgewecjWniW3sff9PSkx2M4h1XfBArBd6tY/exec"
 };
 
 const $ = (selector) => document.querySelector(selector);
