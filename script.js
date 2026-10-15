@@ -6,11 +6,11 @@ const CONFIG = {
   // Año de la fiesta, en formato numérico. Ejemplo: 2027
   eventYear: 2027,
   // Dirección completa para ubicar el salón en Google Maps.
-  venueAddress: "",
+  venueAddress: "https://maps.app.goo.gl/UvtPyEGc9AyCg5uc9",
   // Ruta a un archivo de audio que tengas derecho a usar, por ejemplo: "audio/musica.mp3"
-  musicFile: "",
+  musicFile: "ID3",
   // Enlace completo de la playlist de Spotify.
-  spotifyUrl: "",
+  spotifyUrl: "https://open.spotify.com/playlist/3p9KdLksmJ1PxLYJjSvuZG?si=epg-rHxVTf-y5X23X3TgnA&utm_source=copy-link&pt=f26e9aa71449e25198682a39301bd6c7&pi=FMetXXflTcacd",
   // Enlace completo y verificado para pagar la entrada.
   paymentUrl: "https://link.mercadopago.com.ar/xvjuji",
   /*
@@ -18,7 +18,7 @@ const CONFIG = {
    * con Formspree u otro servicio. Si queda vacío, el formulario NO envía ni
    * almacena datos: solo muestra un aviso de demostración.
    */
-  formEndpoint: ""
+  formEndpoint: "https://docs.google.com/forms/d/e/1FAIpQLSdPf9PO1Fte-z6XDRx_6V9qB26u2QqQR3O8o4cvVb-mcX_kpg/viewform"
 };
 
 const $ = (selector) => document.querySelector(selector);
