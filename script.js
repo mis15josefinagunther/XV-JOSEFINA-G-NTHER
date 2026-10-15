@@ -6,7 +6,7 @@ const CONFIG = {
   // Año de la fiesta, en formato numérico. Ejemplo: 2027
   eventYear: 2027,
   // Dirección completa para ubicar el salón en Google Maps.
-  venueAddress: "https://maps.app.goo.gl/1g2piBAb74vbJh878",
+  venueAddress: "Altos Álamos Eventos",
   // Ruta a un archivo de audio que tengas derecho a usar, por ejemplo: "audio/musica.mp3"
   musicFile: "I See The Light (From Tangled) - Royal Philharmonic Orchestra.mp3",
   // Enlace completo de la playlist de Spotify.
