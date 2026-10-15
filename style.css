@@ -171,3 +171,162 @@ main.invitation-visible {
   visibility: visible;
   opacity: 1;
 }
+
+
+/* SOBRE DE APERTURA: XV JOSEFINA */
+#envelope-screen {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 99999 !important;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 24px 16px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at top left, #e8d9f5, transparent 55%),
+    linear-gradient(135deg, #fcf9ff, #f4eafa);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+#envelope-screen .envelope-button {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+#envelope-screen .envelope {
+  display: block;
+  position: relative;
+  width: min(78vw, 330px);
+  height: 210px;
+  filter: drop-shadow(0 12px 20px #80649455);
+}
+
+#envelope-screen .envelope-back {
+  position: absolute;
+  inset: 0;
+  border: 2px solid #c49a42;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #f5eafa, #d8c0e8);
+}
+
+#envelope-screen .envelope-letter {
+  position: absolute;
+  z-index: 1;
+  inset: 12px 20px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  color: #654582;
+  background: #fffdfd;
+  border: 1px solid #c49a42;
+  transition: transform .7s ease .15s;
+}
+
+#envelope-screen .envelope-letter span {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 3rem;
+}
+
+#envelope-screen .envelope-letter small {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.4rem;
+  font-style: italic;
+}
+
+#envelope-screen .envelope-letter b {
+  color: #c49a42;
+  font-size: 1.5rem;
+}
+
+#envelope-screen .envelope-flap {
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: min(39vw, 165px) solid transparent;
+  border-right: min(39vw, 165px) solid transparent;
+  border-top: 110px solid #d8c0e8;
+  transform-origin: top center;
+  transition: transform .6s ease;
+}
+
+#envelope-screen .envelope-front {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 8px;
+  background:
+    linear-gradient(145deg, transparent 49%, #eadcf3 50%),
+    linear-gradient(215deg, transparent 49%, #f4eafa 50%);
+  border-bottom: 2px solid #c49a42;
+}
+
+#envelope-screen .envelope-seal {
+  position: absolute;
+  z-index: 5;
+  top: 53%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 2px solid #f2dfaa;
+  background: #b89445;
+  color: white;
+}
+
+#envelope-screen.is-opening .envelope-flap {
+  transform: rotateX(180deg);
+}
+
+#envelope-screen.is-opening .envelope-letter {
+  transform: translateY(-45%);
+}
+
+#envelope-screen.hidden {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+#invitation-content {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .6s ease;
+}
+
+#invitation-content.invitation-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+@media (max-width: 480px) {
+  #envelope-screen .envelope {
+    width: 82vw;
+    height: 180px;
+  }
+
+  #envelope-screen .envelope-flap {
+    border-left-width: 41vw;
+    border-right-width: 41vw;
+    border-top-width: 95px;
+  }
+}
