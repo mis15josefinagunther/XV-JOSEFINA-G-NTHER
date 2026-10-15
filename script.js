@@ -8,7 +8,7 @@ const CONFIG = {
   // Dirección completa para ubicar el salón en Google Maps.
   venueAddress: "https://maps.app.goo.gl/1g2piBAb74vbJh878",
   // Ruta a un archivo de audio que tengas derecho a usar, por ejemplo: "audio/musica.mp3"
-  musicFile: "ID3",
+  musicFile: "I See The Light (From Tangled) - Royal Philharmonic Orchestra.mp3",
   // Enlace completo de la playlist de Spotify.
   spotifyUrl: "https://open.spotify.com/playlist/3p9KdLksmJ1PxLYJjSvuZG?si=epg-rHxVTf-y5X23X3TgnA&utm_source=copy-link&pt=f26e9aa71449e25198682a39301bd6c7&pi=FMetXXflTcacd",
   // Enlace completo y verificado para pagar la entrada.
