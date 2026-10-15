@@ -6,7 +6,7 @@ const CONFIG = {
   // Año de la fiesta, en formato numérico. Ejemplo: 2027
   eventYear: 2027,
   // Dirección completa para ubicar el salón en Google Maps.
-  venueAddress: "https://maps.app.goo.gl/UvtPyEGc9AyCg5uc9",
+  venueAddress: "https://maps.app.goo.gl/1g2piBAb74vbJh878",
   // Ruta a un archivo de audio que tengas derecho a usar, por ejemplo: "audio/musica.mp3"
   musicFile: "ID3",
   // Enlace completo de la playlist de Spotify.
