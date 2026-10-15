@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f1ff">
+  <meta name="description" content="Invitación a los XV de Josefina">
+  <title>XV Josefina | Invitación</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="petal petal-one" aria-hidden="true"></div>
+  <div class="petal petal-two" aria-hidden="true"></div>
+
+  <section class="envelope-screen" id="envelope-screen" aria-label="Sobre de invitación">
+    <div class="envelope-intro">
+      <p class="eyebrow">Tenés una invitación especial</p>
+      <h1 class="envelope-title">XV <span>Josefina Günther</span></h1>
+      <p class="envelope-hint">Tocá el sobre para descubrir la invitación</p>
+    </div>
+    <button class="envelope-button" id="open-envelope" type="button" aria-label="Abrir sobre e invitación">
+      <span class="envelope" id="envelope">
+        <span class="envelope-letter"><span>XV</span><small>Josefina Günther</small><b>✿</b></span>
+        <span class="envelope-back"></span>
+        <span class="envelope-flap"></span>
+        <span class="envelope-front"></span>
+        <span class="envelope-seal">J</span>
+      </span>
+    </button>
+    <p class="envelope-bottom">Con cariño, para alguien especial ♡</p>
+    <button class="skip-envelope" id="skip-envelope" type="button">Abrir invitación directamente</button>
+  </section>
+
+  <main id="invitation-content" class="invitation-content" aria-hidden="true">
+    <section class="hero card" aria-labelledby="main-title">
+      <p class="eyebrow">Una noche para recordar</p>
+      <div class="floral-mark" aria-hidden="true">✿</div>
+      <p class="pre-title">Te invito a celebrar mis 15 años</p>
+      <h2 id="main-title" class="hero-title"><span>XV</span><span class="name">Josefina Günther</span></h2>
+      <div class="ornament" aria-hidden="true"><span></span> ❀ <span></span></div>
+      <p class="intro">Una noche mágica, llena de amor, alegría y recuerdos para siempre.</p>
+      <div class="event-details event-details-highlight">
+        <div><span class="detail-label">FECHA</span><strong id="date-display">20 de febrero</strong></div>
+        <div class="detail-divider" aria-hidden="true"></div>
+        <div><span class="detail-label">HORA</span><strong>21:00 hs</strong></div>
+      </div>
+      <p class="venue">Salón <strong>“Altos Álamos”</strong></p>
+      <a class="button button-primary" href="#detalles">Descubrir la invitación <span aria-hidden="true">↓</span></a>
+      <p class="tiny-note">Tu presencia hará esta noche aún más especial</p>
+    </section>
+
+    <section class="section personal-message">
+      <p class="eyebrow">Una invitación de corazón</p>
+      <div class="message-card">
+        <p>Hay momentos que se vuelven inolvidables cuando los compartimos con las personas que queremos.</p>
+        <p>Hoy estoy por comenzar una etapa muy especial de mi vida y quiero celebrarla rodeada de quienes hicieron, de una u otra manera, que mi camino hasta acá fuera más lindo.</p>
+        <p>Me encantaría compartir una noche llena de alegría, música, emociones y muchos recuerdos que queden para siempre.</p>
+        <p>¡Por eso me gustaría que seas parte de este gran festejo!</p>
+        
+      </div>
+    </section>
+
+    <section class="section countdown-section" id="detalles">
+      <p class="eyebrow">La cuenta regresiva</p>
+      <h2>¡Cada vez falta menos!</h2>
+      <div class="countdown" aria-live="polite">
+        <div><strong id="days">—</strong><span>Días</span></div>
+        <div><strong id="hours">—</strong><span>Horas</span></div>
+        <div><strong id="minutes">—</strong><span>Minutos</span></div>
+        <div><strong id="seconds">—</strong><span>Segundos</span></div>
+      </div>
+      <p id="countdown-note" class="muted">La cuenta regresiva se activará cuando se configure el año del evento.</p>
+    </section>
+
+    <section class="section two-column">
+      <article class="info-card">
+        <div class="icon" aria-hidden="true">⌖</div>
+        <p class="eyebrow">¿Dónde nos encontramos?</p>
+        <h2>El lugar</h2>
+        <p>Salón “Altos Álamos”</p>
+        <p class="muted">La dirección exacta se agregará cuando esté confirmada.</p>
+        <a class="button button-outline" id="map-link" href="#" target="_blank" rel="noopener" aria-disabled="true">Ver ubicación</a>
+      </article>
+      <article class="info-card">
+        <div class="icon" aria-hidden="true">♫</div>
+        <p class="eyebrow">La música de esta noche</p>
+        <h2>Un poquito de ritmo</h2>
+        <p>La música acompañará la invitación. Podés silenciarla desde el parlante de la esquina inferior derecha.</p>
+        <audio id="background-music" loop preload="auto"></audio>
+        <p id="music-note" class="muted small">Agregá un archivo de audio propio en la configuración para activar la música.</p>
+      </article>
+    </section>
+
+    <section class="section gallery-section" id="fotos">
+      <p class="eyebrow">Recuerdos que florecen</p>
+      <h2>Un poquito de Josefina</h2>
+      <p class="gallery-intro">Algunos momentos especiales para compartir antes de la gran noche.</p>
+      <div class="photo-gallery">
+        <figure class="photo-slot">
+          <img src="fotos/foto1.jpg" alt="Foto de Josefina 1" loading="lazy">
+          <figcaption>Un recuerdo especial</figcaption>
+          <span class="photo-placeholder" aria-hidden="true">＋<small>Agregá foto 1</small></span>
+        </figure>
+        <figure class="photo-slot">
+          <img src="fotos/foto2.jpg" alt="Foto de Josefina 2" loading="lazy">
+          <figcaption>Momentos felices</figcaption>
+          <span class="photo-placeholder" aria-hidden="true">＋<small>Agregá foto 2</small></span>
+        </figure>
+        <figure class="photo-slot">
+          <img src="fotos/foto3.jpg" alt="Foto de Josefina 3" loading="lazy">
+          <figcaption>Camino a mis XV</figcaption>
+          <span class="photo-placeholder" aria-hidden="true">＋<small>Agregá foto 3</small></span>
+        </figure>
+      </div>
+      <p class="muted small">Las fotos se muestran al subir tus archivos a la carpeta <code>fotos</code> del repositorio.</p>
+    </section>
+
+    <section class="section playlist-card">
+      <div class="icon" aria-hidden="true">♡</div>
+      <p class="eyebrow">Elegí una canción</p>
+      <h2>Sumá música a mi playlist</h2>
+      <p>¿Qué canción no puede faltar en esta noche? Abrí la playlist de Spotify y agregá tu tema favorito.</p>
+      <a class="button button-primary" id="spotify-link" href="#" target="_blank" rel="noopener" aria-disabled="true">Abrir playlist de Spotify ↗</a>
+      <p class="muted small">El enlace de la playlist se agregará cuando esté disponible.</p>
+    </section>
+
+    <section class="section payment-card">
+      <div class="icon" aria-hidden="true">✧</div>
+      <p class="eyebrow">Entradas</p>
+      <h2>Valor de las entradas</h2>
+      <div class="price-list">
+        <p><span>A partir de 13 años</span><strong>$40.000</strong></p>
+        <p><span>De 5 a 12 años</span><strong>$25.000</strong></p>
+        <p><span>Menores de 5 años</span><strong>No pagan</strong></p>
+      </div>
+      <a class="button button-primary" id="payment-link" href="https://link.mercadopago.com.ar/xvjuji" target="_blank" rel="noopener">Pagar ahora con Mercado Pago ↗</a>
+    </section>
+
+    <section class="section rsvp-section">
+      <p class="eyebrow">Nos encantaría contar con vos</p>
+      <h2>Datos de los invitados</h2>
+      <p class="form-intro">Completá tus datos para confirmar tu asistencia.</p>
+      <form id="guest-form">
+        <div class="form-grid">
+          <label class="full-width">Nombre y apellido de los integrantes
+            <textarea name="integrantes" rows="2" required placeholder="Escribí el nombre y apellido de cada integrante"></textarea>
+          </label>
+          <fieldset class="full-width confirmation-field">
+            <legend>Confirmación de asistencia</legend>
+            <label class="radio-option"><input type="radio" name="asistencia" value="No confirmo mi asistencia" required> No confirmo mi asistencia</label>
+            <label class="radio-option"><input type="radio" name="asistencia" value="Sí confirmo mi asistencia" required> Sí, confirmo mi asistencia</label>
+          </fieldset>
+          <label>Teléfono
+            <input name="telefono" type="tel" autocomplete="tel" required placeholder="Tu número de teléfono">
+          </label>
+          <label>Menú
+            <select name="menu" required><option value="">Elegí una opción</option><option value="Clásico">Menú clásico</option><option value="Especial">Menú especial</option></select>
+          </label>
+          <label class="full-width">Alergias o preferencias alimentarias (si corresponde)
+            <textarea name="alergias_preferencias" rows="3" placeholder="Especificá alergias o preferencias"></textarea>
+          </label>
+        </div>
+        <button class="button button-primary" type="submit">Enviar confirmación</button>
+        <p id="form-status" class="muted small" role="status">Para recibir las respuestas, es necesario conectar el formulario con un servicio de formularios.</p>
+      </form>
+    </section>
+
+    <footer>
+      <div class="footer-flower" aria-hidden="true">✿</div>
+      <p>Con amor, <span>Josefina</span></p>
+      <p class="muted small">Gracias por ser parte de este momento tan especial.</p>
+    </footer>
+  </main>
+  <button class="speaker-toggle" id="speaker-toggle" type="button" aria-label="Silenciar música" aria-pressed="false" title="Silenciar o activar música">🔊</button>
+  <script src="script.js"></script>
+</body>
+</html>
