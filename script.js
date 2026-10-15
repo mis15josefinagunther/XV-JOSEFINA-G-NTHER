@@ -182,3 +182,61 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+/* Apertura del sobre de XV Josefina */
+(() => {
+  function configurarSobre() {
+    const pantalla = document.getElementById("envelope-screen");
+    const sobre = document.getElementById("open-envelope");
+    const saltar = document.getElementById("skip-envelope");
+    const tarjeta = document.getElementById("invitation-content");
+
+    if (!pantalla || !sobre || !tarjeta) return;
+
+    // Al cargar, mostrar el sobre y ocultar la tarjeta.
+    pantalla.classList.remove("hidden", "is-opening", "is-open", "opened");
+    pantalla.style.opacity = "1";
+    pantalla.style.visibility = "visible";
+    pantalla.style.pointerEvents = "auto";
+
+    tarjeta.classList.remove("invitation-visible");
+    tarjeta.setAttribute("aria-hidden", "true");
+
+    let abriendo = false;
+
+    function abrirInvitacion() {
+      if (abriendo) return;
+      abriendo = true;
+
+      pantalla.classList.add("is-opening");
+
+      window.setTimeout(() => {
+        pantalla.classList.add("hidden");
+        pantalla.setAttribute("aria-hidden", "true");
+
+        tarjeta.classList.add("invitation-visible");
+        tarjeta.setAttribute("aria-hidden", "false");
+
+        abriendo = false;
+      }, 700);
+
+      // Intenta iniciar la música si está configurada.
+      const musica = document.getElementById("background-music");
+      if (musica && musica.getAttribute("src")) {
+        musica.play().catch(() => {
+          // Algunos navegadores requieren iniciar el audio manualmente.
+        });
+      }
+    }
+
+    sobre.addEventListener("click", abrirInvitacion);
+    if (saltar) saltar.addEventListener("click", abrirInvitacion);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", configurarSobre);
+  } else {
+    configurarSobre();
+  }
+})();
+
