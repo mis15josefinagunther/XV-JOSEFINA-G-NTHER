@@ -1,31 +1,54 @@
 # Invitación web — XV Josefina Günther
 
-## Archivos
-- `index.html`: contenido de la invitación y formulario.
-- `style.css`: diseño floral lila/blanco con formato vertical angosto tipo celular, sobre animado y parlante fijo.
-- `script.js`: sobre, cuenta regresiva al 20 de febrero de 2027 a las 21:00, música, mapa, enlaces y envío del formulario.
-- `guardar_respuestas.gs`: código para guardar respuestas en Google Sheets con Apps Script.
+## Qué hay que subir a GitHub
+Subí estos archivos a la raíz del repositorio (reemplazando los anteriores):
 
-## Solución para guardar las confirmaciones
-GitHub Pages solo publica la web: no guarda respuestas. Para guardarlas en una planilla:
+- `index.html`
+- `style.css`
+- `script.js`
+- `guardar_respuestas.gs` (solo se usa para copiarlo a Google Sheets, no hace falta que funcione en la web)
+- La carpeta `fotos` con `foto1.jpg`, `foto2.jpg` y `foto3.jpg` (opcional; cada foto aparece en un marco dorado en un lugar distinto de la invitación, y si falta alguna ese marco no se muestra)
+- El archivo de música `.mp3` (opcional)
+
+Para publicar: en GitHub, **Settings → Pages**, elegí la rama `main` y la carpeta `/(root)`.
+
+## Qué se puede cambiar (sin saber programar)
+Abrí `script.js`. Al principio hay un bloque llamado `CONFIG` con todo lo que se edita, con comentarios en español:
+
+| Qué | Dónde |
+|---|---|
+| Fecha y hora | `fecha` |
+| Dirección que se muestra | `lugarDireccion` |
+| Búsqueda en Google Maps | `mapaBusqueda` |
+| Música | `musica` |
+| Playlist de Spotify | `spotify` |
+| Link de pago | `mercadoPago` |
+| Conexión del formulario | `formulario` |
+
+Respetá las comillas `"` y las comas al final de cada línea.
+
+## Guardar las confirmaciones en Google Sheets
+GitHub Pages solo publica la web: no guarda respuestas. Para guardarlas:
 
 1. Creá una hoja de cálculo de Google llamada `Respuestas XV Josefina`.
-2. En la hoja, entrá en **Extensiones → Apps Script**.
+2. Entrá en **Extensiones → Apps Script**.
 3. Borrá el código de ejemplo y pegá todo el contenido de `guardar_respuestas.gs`.
 4. Guardá el proyecto.
-5. Elegí **Implementar → Nueva implementación → Aplicación web**.
-6. En “Ejecutar como”, elegí tu cuenta. En acceso, elegí la opción que permita recibir envíos de cualquier persona que tenga la invitación.
-7. Tocá **Implementar**, autorizá los permisos y copiá la URL que termina en `/exec`.
-8. Abrí `script.js` y reemplazá el valor de `formEndpoint` por esa URL exacta. No pegues la URL dentro del formulario en `index.html`.
-9. Cada vez que cambies el código de Apps Script, volvé a **Implementar → Administrar implementaciones → Editar → Nueva versión → Implementar**.
-10. Subí los archivos actualizados `index.html`, `style.css` y `script.js` al repositorio de GitHub, reemplazando los anteriores.
-11. Hacé una prueba con un nombre ficticio y comprobá que se cree una fila en la hoja `Respuestas`.
+5. **Implementar → Nueva implementación → Aplicación web**.
+6. En “Ejecutar como” elegí tu cuenta; en “Quién tiene acceso” elegí **Cualquier persona**.
+7. **Implementar**, autorizá los permisos y copiá la URL que termina en `/exec`.
+8. En `script.js`, pegá esa URL entre las comillas de `formulario: ""`.
+9. Si más adelante cambiás el código de Apps Script: **Implementar → Administrar implementaciones → Editar → Nueva versión → Implementar**.
+10. Subí `script.js` a GitHub.
+11. **Prueba obligatoria:** completá el formulario con un nombre ficticio y comprobá que aparezca una fila nueva en la hoja `Respuestas`. Hacelo antes de compartir la invitación.
 
-**Importante:** la web usa `no-cors` para enviar el formulario a Apps Script. El navegador no permite leer la respuesta del servidor; por eso el mensaje de la página confirma que el envío se intentó, pero la comprobación real es ver la nueva fila en Google Sheets. Hacé esa prueba antes de compartir la invitación con todos.
+Tip: si abrís la URL `/exec` en el navegador y dice “Funcionando”, el script está bien publicado.
 
-## Fotos y música
-- Fotos: colocá `foto1.jpg`, `foto2.jpg` y `foto3.jpg` dentro de una carpeta `fotos` en la raíz del repositorio.
-- Música: subí el archivo de audio a la raíz del repositorio (o a una carpeta `audio`) y actualizá `musicFile` en `script.js` con la ruta exacta. Los navegadores pueden impedir el inicio automático del sonido; si sucede, el invitado debe tocar el parlante.
+**Importante:** por una limitación de los navegadores, la página no puede leer la respuesta de Google. Por eso muestra “¡Gracias!” cuando el envío se realizó, pero la comprobación real es ver la fila en la planilla.
 
-## Publicar
-Subí `index.html`, `style.css`, `script.js` y las carpetas/archivos que uses a la raíz del repositorio. En GitHub, abrí **Settings → Pages**, elegí la rama `main` y la carpeta `/(root)`.
+## Música
+- Subí el `.mp3` a la raíz del repositorio. Recomendado: renombrarlo a `musica.mp3` (sin espacios ni paréntesis) y ponerlo en `musica` dentro de `CONFIG`.
+- Los celulares solo permiten sonido después de un toque; por eso la música arranca cuando la persona toca el sobre. Si el archivo no existe, el botón de música no aparece.
+
+## Fotos
+Subí `foto1.jpg`, `foto2.jpg` y `foto3.jpg` dentro de una carpeta llamada `fotos`. La 1 va en marco de arco después del mensaje, la 2 en marco ovalado después de la cuenta regresiva y la 3 en arco antes de confirmar asistencia. Las fotos verticales (retrato) son las que mejor quedan. Conviene que pesen menos de 500 KB cada una para que la invitación cargue rápido.
