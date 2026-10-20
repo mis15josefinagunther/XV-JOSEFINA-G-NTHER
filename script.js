@@ -25,7 +25,7 @@ const CONFIG = {
 
   // WhatsApp que recibe las confirmaciones: código de país + 9 + código de área + número, todo junto, sin + ni espacios.
   // Al tocar "Enviar", se abre WhatsApp con el mensaje ya escrito. Dejalo vacío "" para no usarlo.
-  whatsapp: "5492920401490",
+  whatsapp: "5492920593501",
 
   // (Opcional) URL de Google Apps Script que termina en /exec, para guardar también las respuestas en una planilla. (ver README.md, paso 8).
   formulario: ""
