@@ -23,11 +23,7 @@ const CONFIG = {
   spotify: "https://open.spotify.com/playlist/3p9KdLksmJ1PxLYJjSvuZG?si=epg-rHxVTf-y5X23X3TgnA&utm_source=copy-link&pt=f26e9aa71449e25198682a39301bd6c7&pi=FMetXXflTcacd",
   mercadoPago: "https://link.mercadopago.com.ar/xvjuji",
 
-  // WhatsApp que recibe las confirmaciones: código de país + 9 + código de área + número, todo junto, sin + ni espacios.
-  // Al tocar "Enviar", se abre WhatsApp con el mensaje ya escrito. Dejalo vacío "" para no usarlo.
-  whatsapp: "5492920593501",
-
-  // (Opcional) URL de Google Apps Script que termina en /exec, para guardar también las respuestas en una planilla. (ver README.md, paso 8).
+  // URL de Google Apps Script que termina en /exec (ver README.md, paso 8).
   formulario: ""
 };
 
@@ -279,85 +275,42 @@ function configurarFormulario() {
   form.addEventListener("input", (e) => { const campo = e.target.closest(".field"); if (campo) limpiarError(campo); });
   form.addEventListener("change", (e) => { const campo = e.target.closest(".field"); if (campo) limpiarError(campo); });
 
-  const usaWhatsapp = /^\d{8,15}$/.test((CONFIG.whatsapp || "").replace(/\D/g, ""));
-  const usaPlanilla = !!CONFIG.formulario && CONFIG.formulario.includes("/exec");
-  if (usaWhatsapp && boton) boton.textContent = "Enviar confirmación por WhatsApp";
-
-  form.addEventListener("submit", (event) => {
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
     estado.className = "form-status";
     if (!validar()) { estado.textContent = "Revisá los campos marcados."; estado.classList.add("error"); return; }
-    if (!usaWhatsapp && !usaPlanilla) {
-      estado.textContent = "El formulario todavía no está conectado. Falta configurar WhatsApp o Google Apps Script.";
+    if (!CONFIG.formulario || !CONFIG.formulario.includes("/exec")) {
+      estado.textContent = "El formulario todavía no está conectado. Falta configurar la URL de Google Apps Script.";
       estado.classList.add("error");
       return;
     }
+    boton.disabled = true; boton.textContent = "Enviando…";
+    estado.textContent = "";
 
-    const datos = new FormData(form);
-    const v = (n) => String(datos.get(n) || "").trim();
-    const asiste = v("asistencia").startsWith("Sí");
-    let waUrl = "";
+    const params = new URLSearchParams();
+    for (const [clave, valor] of new FormData(form).entries()) params.append(clave, String(valor).trim());
+    const asiste = form.querySelector('input[name="asistencia"]:checked').value.startsWith("Sí");
 
-    // 1) WhatsApp: se abre en este mismo toque para que el celular no lo bloquee
-    if (usaWhatsapp) {
-      const texto = [
-        "¡Hola! Te respondo la invitación a los XV de Josefina 🎉",
-        "",
-        "*Integrantes:* " + v("integrantes"),
-        "*Asistencia:* " + v("asistencia"),
-        "*Teléfono:* " + v("telefono"),
-        "*Menú:* " + v("menu"),
-        "*Alergias o preferencias:* " + (v("alergias_preferencias") || "Ninguna")
-      ].join("\n");
-      waUrl = "https://wa.me/" + CONFIG.whatsapp.replace(/\D/g, "") + "?text=" + encodeURIComponent(texto);
-      window.open(waUrl, "_blank", "noopener");
-    }
-
-    // 2) Planilla de Google (opcional, en segundo plano)
-    if (usaPlanilla) {
-      const params = new URLSearchParams();
-      for (const [clave, valor] of datos.entries()) params.append(clave, String(valor).trim());
-      fetch(CONFIG.formulario, {
+    try {
+      await fetch(CONFIG.formulario, {
         method: "POST",
         mode: "no-cors",
         headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
         body: params.toString()
-      }).catch(() => {});
+      });
+      form.hidden = true;
+      $("#success-title").textContent = asiste ? "¡Gracias por confirmar!" : "¡Gracias por avisarnos!";
+      $("#success-text").textContent = asiste
+        ? "Recibimos tu confirmación. ¡Nos vemos para festejar juntos!"
+        : "Recibimos tu respuesta. Lamentamos que no puedas acompañarnos, ¡te vamos a extrañar!";
+      exito.hidden = false;
+      exito.focus();
+      exito.scrollIntoView({ behavior: "smooth", block: "center" });
+    } catch (_) {
+      estado.textContent = "No se pudo enviar. Revisá tu conexión e intentá de nuevo.";
+      estado.classList.add("error");
+      boton.disabled = false; boton.textContent = "Enviar confirmación";
     }
-/* ---------- Copiar alias ---------- */
-function configurarAlias() {
-  const boton = $("#copy-alias");
-  const alias = $("#alias-txt");
-  const estado = $("#copy-status");
-  if (!boton || !alias) return;
-  boton.addEventListener("click", async () => {
-    const texto = alias.textContent.trim();
-    let ok = false;
-    try { await navigator.clipboard.writeText(texto); ok = true; }
-    catch (_) {
-      try {
-        const t = document.createElement("textarea");
-        t.value = texto; t.setAttribute("readonly", ""); t.style.position = "fixed"; t.style.opacity = "0";
-        document.body.appendChild(t); t.select(); ok = document.execCommand("copy"); t.remove();
-      } catch (_) { ok = false; }
-    }
-    if (estado) estado.textContent = ok ? "¡Alias copiado!" : "No se pudo copiar. Mantené apretado el alias para copiarlo.";
-    if (ok) { boton.textContent = "Copiado ✓"; setTimeout(() => { boton.textContent = "Copiar alias"; }, 2500); }
-  });
-    // 3) Pantalla de agradecimiento (con botón por si WhatsApp no se abrió solo)
-    form.hidden = true;
-    $("#success-title").textContent = usaWhatsapp
-      ? "¡Casi listo!"
-      : (asiste ? "¡Gracias por confirmar!" : "¡Gracias por avisarnos!");
-    $("#success-text").textContent = usaWhatsapp
-      ? "Solo falta un paso: mandá el mensaje que se abrió en WhatsApp para que tu respuesta nos llegue."
-      : (asiste ? "Recibimos tu confirmación. ¡Nos vemos para festejar juntos!"
-                : "Recibimos tu respuesta. Lamentamos que no puedas acompañarnos, ¡te vamos a extrañar!");
-    const wa = $("#wa-link");
-    if (wa && waUrl) { wa.href = waUrl; wa.hidden = false; }
-    exito.hidden = false;
-    exito.focus();
-    exito.scrollIntoView({ behavior: "smooth", block: "center" });
   });
 }
 
@@ -372,4 +325,3 @@ configurarMusica();
 configurarFotos();
 configurarSobre();
 configurarFormulario();
-configurarAlias();

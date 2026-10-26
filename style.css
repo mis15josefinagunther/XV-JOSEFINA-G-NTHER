@@ -381,12 +381,3 @@ footer { text-align: center; padding: 56px 0 10px; }
 .butterfly { color: #a98648; }
 .bf-h1 { top: 200px; left: 30px; }
 .bf-e1 { top: 6%; right: 10%; }
-/* Código de vestimenta */
-.dress-icons { display: flex; justify-content: center; align-items: flex-end; gap: 34px; margin: 8px 0 14px; }
-.dress-icon { width: 68px; height: 102px; fill: none; stroke: #a98648; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
-.dress-note { font-family: var(--serif); font-style: italic; font-size: 1.2rem !important; line-height: 1.4; color: var(--muted); margin: 0 auto; max-width: 240px; }
-
-/* Regalo / alias */
-.card h2#regalo-titulo { font-size: 1.9rem; }
-.alias { display: inline-block; margin: 6px 0 14px !important; padding: 10px 22px; border: 1px dashed var(--gold); border-radius: 12px; background: rgba(184, 151, 95, .08); font-family: var(--serif); font-size: 1.5rem !important; font-weight: 600; color: var(--deep-lilac); letter-spacing: .02em; word-break: break-all; }
-#copy-status { margin-top: 10px; min-height: 1.4em; }
