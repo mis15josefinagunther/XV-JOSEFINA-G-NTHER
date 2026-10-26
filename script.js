@@ -324,7 +324,26 @@ function configurarFormulario() {
         body: params.toString()
       }).catch(() => {});
     }
-
+/* ---------- Copiar alias ---------- */
+function configurarAlias() {
+  const boton = $("#copy-alias");
+  const alias = $("#alias-txt");
+  const estado = $("#copy-status");
+  if (!boton || !alias) return;
+  boton.addEventListener("click", async () => {
+    const texto = alias.textContent.trim();
+    let ok = false;
+    try { await navigator.clipboard.writeText(texto); ok = true; }
+    catch (_) {
+      try {
+        const t = document.createElement("textarea");
+        t.value = texto; t.setAttribute("readonly", ""); t.style.position = "fixed"; t.style.opacity = "0";
+        document.body.appendChild(t); t.select(); ok = document.execCommand("copy"); t.remove();
+      } catch (_) { ok = false; }
+    }
+    if (estado) estado.textContent = ok ? "¡Alias copiado!" : "No se pudo copiar. Mantené apretado el alias para copiarlo.";
+    if (ok) { boton.textContent = "Copiado ✓"; setTimeout(() => { boton.textContent = "Copiar alias"; }, 2500); }
+  });
     // 3) Pantalla de agradecimiento (con botón por si WhatsApp no se abrió solo)
     form.hidden = true;
     $("#success-title").textContent = usaWhatsapp
