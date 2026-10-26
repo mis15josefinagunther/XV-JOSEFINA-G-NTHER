@@ -372,3 +372,4 @@ configurarMusica();
 configurarFotos();
 configurarSobre();
 configurarFormulario();
+configurarAlias();
